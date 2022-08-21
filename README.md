@@ -1,3 +1,3 @@
 # Computer-Vision-Resources
 
-Created by Mehmet Zahid Genç
+# Created by Mehmet Zahid Genç
