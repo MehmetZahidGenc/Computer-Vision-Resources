@@ -1,0 +1,8 @@
+train: /content/dataset/custom_dataset/images/train
+val: /content/dataset/custom_dataset/images/val
+test: /content/dataset/custom_dataset/images/test
+
+is_coco: False
+
+nc: 1
+names: ['drone']
