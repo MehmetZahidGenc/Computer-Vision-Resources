@@ -1,0 +1,8 @@
+train: /content/custom_dataset/yolor_dataset/images/train
+val: /content/custom_dataset/yolor_dataset/images/val
+test: /content/custom_dataset/yolor_dataset/images/test
+
+# number of classes
+nc: 2
+# class names
+names: ['pathole', 'manhole']
