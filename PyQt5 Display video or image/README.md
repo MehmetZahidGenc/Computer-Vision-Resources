@@ -29,7 +29,7 @@
 
 ### In any python editor(visual studio, pycharm, ... ext), you make some functions to display images or videos.
 
-* Ui_MainWindow class has method comes form Qt Designer and we add 2 or more method into class.
+* Ui_MainWindow class has method comes from Qt Designer and we add 2 or more method into class.
 
 ```
 def displayImage(self, img, window=1):
@@ -48,3 +48,41 @@ def displayImage(self, img, window=1):
         self.imgLabel.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
 
 ```
+
+
+```
+def start_video(self):
+
+        cam = cv2.VideoCapture(0)
+
+        while cam.isOpened():
+            ret, frame = cam.read()
+            frame = cv2.flip(frame, 1)
+
+            self.displayImage(frame, 1)
+
+            if cv2.waitKey(16) == ord('q'):
+                break
+
+        cam.release()
+        cv2.destroyAllWindows()
+
+```
+
+* in the algorithm we have created, the last part of the code should look like this
+
+```
+if __name__ == "__main__":
+    import sys
+    
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+
+    MainWindow.show()
+    sys.exit(app.exec_())
+
+```
+
