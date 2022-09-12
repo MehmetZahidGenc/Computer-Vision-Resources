@@ -97,10 +97,10 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1092, 654)
-        
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        
+
         self.imgLabel = QtWidgets.QLabel(self.centralwidget)
         self.imgLabel.setGeometry(QtCore.QRect(10, 10, 871, 541))
         self.imgLabel.setFrameShape(QtWidgets.QFrame.Box)
@@ -108,11 +108,25 @@ class Ui_MainWindow(object):
         self.imgLabel.setLineWidth(7)
         self.imgLabel.setObjectName("imgLabel")
 
+        self.record = QtWidgets.QPushButton(self.centralwidget)
+        self.record.setGeometry(QtCore.QRect(900, 30, 171, 61))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(False)
+        font.setWeight(50)
+        self.record.setFont(font)
+        self.record.setObjectName("record")
+        self.record.clicked.connect(self.start_video)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1092, 26))
         self.menubar.setObjectName("menubar")
+
         MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -121,6 +135,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.imgLabel.setText(_translate("MainWindow", " "))
+        self.record.setText(_translate("MainWindow", "record"))
 
     def displayImage(self, img, window=1):
         qformat = QtGui.QImage.Format_Indexed8
@@ -156,14 +171,15 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     import sys
+    
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
+    
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
+    
     MainWindow.show()
     sys.exit(app.exec_())
 
 
 ```
-
-
