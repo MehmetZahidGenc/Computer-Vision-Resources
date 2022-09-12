@@ -86,3 +86,84 @@ if __name__ == "__main__":
 
 ```
 
+* Entire code block
+
+```
+from PyQt5 import QtCore, QtGui, QtWidgets
+import cv2
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(1092, 654)
+        
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        
+        self.imgLabel = QtWidgets.QLabel(self.centralwidget)
+        self.imgLabel.setGeometry(QtCore.QRect(10, 10, 871, 541))
+        self.imgLabel.setFrameShape(QtWidgets.QFrame.Box)
+        self.imgLabel.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.imgLabel.setLineWidth(7)
+        self.imgLabel.setObjectName("imgLabel")
+
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1092, 26))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.imgLabel.setText(_translate("MainWindow", " "))
+
+    def displayImage(self, img, window=1):
+        qformat = QtGui.QImage.Format_Indexed8
+
+        if (len(img.shape)) == 3:
+            if (img.shape[2]) == 4:
+                qformat = QtGui.QImage.Format_RGBA8888
+            else:
+                qformat = QtGui.QImage.Format_RGB888
+
+        img = QtGui.QImage(img, img.shape[1], img.shape[0], qformat)
+
+        img = img.rgbSwapped()
+        self.imgLabel.setPixmap(QtGui.QPixmap.fromImage(img))
+        self.imgLabel.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+
+    def start_video(self):
+
+        cam = cv2.VideoCapture(0)
+
+        while cam.isOpened():
+            ret, frame = cam.read()
+            frame = cv2.flip(frame, 1)
+
+            self.displayImage(frame, 1)
+
+            if cv2.waitKey(16) == ord('q'):
+                break
+
+        cam.release()
+        cv2.destroyAllWindows()
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
+
+
+```
+
+
