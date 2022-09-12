@@ -22,3 +22,29 @@
 * Step 4 - Define properties of QFrame of label object 
 
 ![4](https://user-images.githubusercontent.com/71969819/189678526-9c2f34fb-8896-465e-a179-1ae1371bca1d.png)
+
+
+### Attention! 
+  Before proceeding to next step , you must convert the ui file to py file
+
+### In any python editor(visual studio, pycharm, ... ext), you make some functions to display images or videos.
+
+* Ui_MainWindow class has method comes form Qt Designer and we add 2 or more method into class.
+
+```
+def displayImage(self, img, window=1):
+        qformat = QtGui.QImage.Format_Indexed8
+
+        if (len(img.shape)) == 3:
+            if (img.shape[2]) == 4:
+                qformat = QtGui.QImage.Format_RGBA8888
+            else:
+                qformat = QtGui.QImage.Format_RGB888
+
+        img = QtGui.QImage(img, img.shape[1], img.shape[0], qformat)
+
+        img = img.rgbSwapped()
+        self.imgLabel.setPixmap(QtGui.QPixmap.fromImage(img))
+        self.imgLabel.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+
+```
