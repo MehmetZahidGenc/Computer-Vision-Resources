@@ -2,12 +2,6 @@
 
 * Collect images
 
-<div id="header" align="center">
-  <img src="https://user-images.githubusercontent.com/71969819/194284943-85f5e6fa-3c3f-4fd8-91cc-a9492377a439.png" width="400"/>
-</div> 
-
-
-
 
 * Create Project in Roboflow (I used this service but you can use any other app or service to label and export the dataset)
 
