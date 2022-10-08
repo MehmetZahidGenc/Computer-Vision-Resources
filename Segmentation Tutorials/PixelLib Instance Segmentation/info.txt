@@ -1,0 +1,7 @@
+# res[1] = image
+#
+# res[0] 
+#      -> res[0][0] = rois  == res[0]['rois']
+#      -> res[0][1] = class_ids  == res[0]['class_ids']
+#      -> res[0][2] = scores == res[0]['scores']
+#      -> res[0][3] = masks == res[0]['masks']
