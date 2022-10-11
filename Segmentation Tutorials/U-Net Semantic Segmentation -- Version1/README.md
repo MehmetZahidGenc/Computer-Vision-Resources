@@ -1,5 +1,7 @@
 ## U-Net Semantic Segmentation
 
+U-Net model was trained by using 96 training images and masks, 20 validation images and masks
+
 
 ## Mask Group-1
 <div id="header" align="center">
